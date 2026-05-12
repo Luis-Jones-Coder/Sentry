@@ -12,6 +12,7 @@
 
   <link rel="stylesheet" href="assets/css/styles.css" />
   <link rel="stylesheet" href="assets/css/animations.css" />
+  <link rel="stylesheet" href="assets/css/responsive.css" />
 </head>
 <body>
 
@@ -39,7 +40,7 @@
 
   <!-- Mobile Nav -->
   <div class="mobile-nav" id="mobile-nav" role="dialog" aria-label="Navigation">
-    <button class="mobile-nav-close" id="mobile-nav-close" aria-label="Close menu">✕</button>
+    <button type="button" class="mobile-nav-close" id="mobile-nav-close" aria-label="Close menu">✕</button>
     <a href="index.html">Home</a>
     <a href="about.html">About</a>
     <a href="#services">Services</a>
@@ -291,6 +292,136 @@
           </div>
         </div>
       </div>
+    </div>
+  </section>
+
+  <!-- ─── TESTIMONIALS ───────────────────────────────────────── -->
+  <section class="section testi-section" id="testimonials">
+    <div class="container">
+
+      <div class="section-header">
+        <div class="tag reveal">Client Perspectives</div>
+        <h2 class="section-title reveal">
+          Trusted by Business<br /><span class="accent-text">Leaders &amp; Founders</span>
+        </h2>
+      </div>
+
+      <div class="carousel-wrapper" id="sry-carousel"
+           role="region" aria-label="Client testimonials" tabindex="0">
+
+        <div class="carousel-track" id="carousel-track">
+
+          <!-- Card 1 -->
+          <article class="testi-card" aria-hidden="false" tabindex="0">
+            <div class="testi-card-inner">
+              <div class="testi-stars" aria-label="5 stars">★★★★★</div>
+              <blockquote class="testi-text">
+                "Sentry gave us the operational clarity we never had. Before working with them we were growing but completely chaotic. After 90 days we had systems, structure, and a clear direction. Transformational."
+              </blockquote>
+              <div class="testi-author">
+                <div class="testi-avatar" aria-hidden="true">SM</div>
+                <div>
+                  <div class="testi-name">Sarah Mitchell</div>
+                  <div class="testi-role">Founder, Meridian Ventures</div>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- Card 2 -->
+          <article class="testi-card" aria-hidden="true" tabindex="-1">
+            <div class="testi-card-inner">
+              <div class="testi-stars" aria-label="5 stars">★★★★★</div>
+              <blockquote class="testi-text">
+                "We came in with a strong product but weak operations. Sentry rebuilt our internal structure from the ground up. Revenue stayed the same but efficiency doubled. That is exactly what we needed."
+              </blockquote>
+              <div class="testi-author">
+                <div class="testi-avatar" aria-hidden="true">JO</div>
+                <div>
+                  <div class="testi-name">James Okafor</div>
+                  <div class="testi-role">CEO, Nexus Digital Group</div>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- Card 3 -->
+          <article class="testi-card" aria-hidden="true" tabindex="-1">
+            <div class="testi-card-inner">
+              <div class="testi-stars" aria-label="5 stars">★★★★★</div>
+              <blockquote class="testi-text">
+                "The Strategic Advisory programme is unlike anything I have experienced. Having Sentry as a consistent strategic resource changed how I make decisions. I operate with far more confidence now."
+              </blockquote>
+              <div class="testi-author">
+                <div class="testi-avatar" aria-hidden="true">RP</div>
+                <div>
+                  <div class="testi-name">Rachel Park</div>
+                  <div class="testi-role">Managing Director, Fortis &amp; Co.</div>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- Card 4 -->
+          <article class="testi-card" aria-hidden="true" tabindex="-1">
+            <div class="testi-card-inner">
+              <div class="testi-stars" aria-label="5 stars">★★★★★</div>
+              <blockquote class="testi-text">
+                "I was sceptical — but the 90-day results spoke for themselves. Our operational bottlenecks were gone, the team was aligned, and we finally had a scalable foundation to grow from."
+              </blockquote>
+              <div class="testi-author">
+                <div class="testi-avatar" aria-hidden="true">TC</div>
+                <div>
+                  <div class="testi-name">Tom Clarke</div>
+                  <div class="testi-role">Founder, Altitude Commerce</div>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- Card 5 -->
+          <article class="testi-card" aria-hidden="true" tabindex="-1">
+            <div class="testi-card-inner">
+              <div class="testi-stars" aria-label="5 stars">★★★★★</div>
+              <blockquote class="testi-text">
+                "Sentry does not deliver generic strategy decks. They work inside your business, understand your reality, and give you practical structured support. They have become essential to how we operate."
+              </blockquote>
+              <div class="testi-author">
+                <div class="testi-avatar" aria-hidden="true">DF</div>
+                <div>
+                  <div class="testi-name">Diana Fernández</div>
+                  <div class="testi-role">COO, Greenfield Partners</div>
+                </div>
+              </div>
+            </div>
+          </article>
+
+        </div><!-- /carousel-track -->
+
+        <!-- Controls -->
+        <div class="carousel-controls">
+          <button type="button" class="carousel-btn carousel-prev" aria-label="Previous testimonial">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <polyline points="15 18 9 12 15 6"></polyline>
+            </svg>
+          </button>
+
+          <div class="carousel-dots" role="tablist" aria-label="Testimonial navigation">
+            <button type="button" class="carousel-dot is-active" role="tab" aria-label="Testimonial 1" aria-selected="true"></button>
+            <button type="button" class="carousel-dot" role="tab" aria-label="Testimonial 2" aria-selected="false"></button>
+            <button type="button" class="carousel-dot" role="tab" aria-label="Testimonial 3" aria-selected="false"></button>
+            <button type="button" class="carousel-dot" role="tab" aria-label="Testimonial 4" aria-selected="false"></button>
+            <button type="button" class="carousel-dot" role="tab" aria-label="Testimonial 5" aria-selected="false"></button>
+          </div>
+
+          <button type="button" class="carousel-btn carousel-next" aria-label="Next testimonial">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+          </button>
+        </div>
+
+      </div><!-- /carousel-wrapper -->
     </div>
   </section>
 

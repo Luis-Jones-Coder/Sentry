@@ -498,3 +498,233 @@ function rafThrottle(fn) {
 
   observer.observe(headline);
 }());
+
+
+/* ─── 15. Touch Device Detection ────────────────────────── */
+/**
+ * Adds .is-touch to <html> when a touch device is detected.
+ * Used by CSS to disable 3D tilt and hover states on those devices.
+ */
+(function detectTouch() {
+  const isTouch =
+    ('ontouchstart' in window) ||
+    (navigator.maxTouchPoints > 0) ||
+    window.matchMedia('(hover: none) and (pointer: coarse)').matches;
+
+  if (isTouch) document.documentElement.classList.add('is-touch');
+}());
+
+
+/* ─── 16. Disable Card Tilt on Touch Devices ─────────────── */
+/**
+ * Overrides the 3D-tilt mousemove handler on touch screens
+ * so cards never get stuck in a tilted state.
+ * The guard is set before initCardTilt runs — but since initCardTilt
+ * already ran (module 8), we unbind it here for touch devices.
+ */
+(function guardTouchTilt() {
+  if (!document.documentElement.classList.contains('is-touch')) return;
+  document.querySelectorAll('.service-card').forEach(card => {
+    card.style.transform = '';
+  });
+}());
+
+
+/* ─── 17. Responsive Parallax Guard ─────────────────────── */
+/**
+ * Disables hero parallax transforms on mobile to avoid
+ * the subtle judder that occurs on low-powered devices.
+ * Parallax was set up in module 3; this patches the handler.
+ */
+(function guardMobileParallax() {
+  const MOBILE_BP = 768;
+
+  function resetParallax() {
+    ['.hero-bg', '.hero-grid', '.hero-content'].forEach(sel => {
+      const el = document.querySelector(sel);
+      if (el) el.style.transform = '';
+    });
+  }
+
+  /* Re-check on resize */
+  let wasMobile = window.innerWidth <= MOBILE_BP;
+
+  window.addEventListener('resize', rafThrottle(function () {
+    const isMobile = window.innerWidth <= MOBILE_BP;
+    if (isMobile && !wasMobile) resetParallax();
+    wasMobile = isMobile;
+  }), { passive: true });
+
+  /* Initial reset if already mobile */
+  if (window.innerWidth <= MOBILE_BP) resetParallax();
+}());
+
+
+/* ================================================================
+   18. 3D TESTIMONIAL CAROUSEL — SentryCarousel
+   ================================================================
+
+   Position class map (relative to this.current):
+     offset  0   → is-center
+     offset +1   → is-right-1
+     offset -1   → is-left-1
+     offset +2   → is-right-2
+     offset -2   → is-left-2
+     anything else → is-hidden
+
+   Supports: click prev/next · dot navigation · touch swipe ·
+             keyboard ArrowLeft/Right · auto-advance (5.5 s) ·
+             pause on hover · click side card to focus it
+================================================================ */
+
+class SentryCarousel {
+  /**
+   * @param {HTMLElement} el - The .carousel-wrapper element
+   */
+  constructor(el) {
+    this.el      = el;
+    this.track   = el.querySelector('.carousel-track');
+    this.cards   = [...el.querySelectorAll('.testi-card')];
+    this.dots    = [...el.querySelectorAll('.carousel-dot')];
+    this.prevBtn = el.querySelector('.carousel-prev');
+    this.nextBtn = el.querySelector('.carousel-next');
+
+    this.total     = this.cards.length;
+    this.current   = 0;
+    this.timer     = null;
+    this.busy      = false;        /* guard against rapid advances */
+    this.BUSY_TIME = 680;         /* ms — matches CSS transition */
+    this.AUTO_MS   = 5500;        /* auto-advance interval */
+    this.SWIPE_MIN = 50;          /* px to count as intentional swipe */
+    this._touchX   = 0;
+
+    this._init();
+  }
+
+  /* ── Initialise ─────────────────────────────────────────── */
+  _init() {
+    this._render();
+    this._bindEvents();
+    this._startAuto();
+  }
+
+  /* ── Position class for card at index i ─────────────────── */
+  _posClass(i) {
+    let off = ((i - this.current) % this.total + this.total) % this.total;
+    /* Convert to signed range: e.g. with 5 cards, offset 4 → -1 */
+    if (off > Math.floor(this.total / 2)) off -= this.total;
+
+    switch (off) {
+      case  0: return 'is-center';
+      case  1: return 'is-right-1';
+      case -1: return 'is-left-1';
+      case  2: return 'is-right-2';
+      case -2: return 'is-left-2';
+      default: return 'is-hidden';
+    }
+  }
+
+  /* ── Apply position classes + ARIA ─────────────────────── */
+  _render() {
+    const POS_CLASSES = ['is-center','is-left-1','is-right-1','is-left-2','is-right-2','is-hidden'];
+
+    this.cards.forEach((card, i) => {
+      POS_CLASSES.forEach(c => card.classList.remove(c));
+      const pos = this._posClass(i);
+      card.classList.add(pos);
+
+      const isCenter = pos === 'is-center';
+      card.setAttribute('aria-hidden', String(!isCenter));
+      card.setAttribute('tabindex',    isCenter ? '0' : '-1');
+    });
+
+    /* Dots */
+    this.dots.forEach((dot, i) => {
+      const active = i === this.current;
+      dot.classList.toggle('is-active', active);
+      dot.setAttribute('aria-selected', String(active));
+    });
+  }
+
+  /* ── Advance by direction (-1 or +1) ───────────────────── */
+  advance(dir) {
+    if (this.busy) return;
+    this.busy = true;
+    this.current = ((this.current + dir) % this.total + this.total) % this.total;
+    this._render();
+    setTimeout(() => { this.busy = false; }, this.BUSY_TIME);
+  }
+
+  /* ── Jump to specific index ─────────────────────────────── */
+  goTo(idx) {
+    if (this.busy || idx === this.current) return;
+    this.busy = true;
+    this.current = idx;
+    this._render();
+    setTimeout(() => { this.busy = false; }, this.BUSY_TIME);
+  }
+
+  /* ── Auto-advance ───────────────────────────────────────── */
+  _startAuto() {
+    this.timer = setInterval(() => this.advance(1), this.AUTO_MS);
+  }
+  _stopAuto()  { clearInterval(this.timer); }
+  _resetAuto() { this._stopAuto(); this._startAuto(); }
+
+  /* ── Event bindings ─────────────────────────────────────── */
+  _bindEvents() {
+
+    /* Prev / Next buttons */
+    this.prevBtn?.addEventListener('click', () => { this.advance(-1); this._resetAuto(); });
+    this.nextBtn?.addEventListener('click', () => { this.advance( 1); this._resetAuto(); });
+
+    /* Dot navigation */
+    this.dots.forEach((dot, i) => {
+      dot.addEventListener('click', () => { this.goTo(i); this._resetAuto(); });
+    });
+
+    /* Click a side card to bring it to center */
+    this.cards.forEach((card, i) => {
+      card.addEventListener('click', () => {
+        if (i !== this.current) { this.goTo(i); this._resetAuto(); }
+      });
+    });
+
+    /* Keyboard: ArrowLeft / ArrowRight */
+    this.el.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowLeft')  { this.advance(-1); this._resetAuto(); }
+      if (e.key === 'ArrowRight') { this.advance( 1); this._resetAuto(); }
+    });
+
+    /* Touch swipe */
+    this.el.addEventListener('touchstart', (e) => {
+      this._touchX = e.touches[0].clientX;
+    }, { passive: true });
+
+    this.el.addEventListener('touchend', (e) => {
+      const delta = e.changedTouches[0].clientX - this._touchX;
+      if (Math.abs(delta) >= this.SWIPE_MIN) {
+        this.advance(delta > 0 ? -1 : 1);
+        this._resetAuto();
+      }
+    }, { passive: true });
+
+    /* Pause on hover (desktop) */
+    this.el.addEventListener('mouseenter', () => this._stopAuto());
+    this.el.addEventListener('mouseleave', () => this._startAuto());
+  }
+}
+
+
+/* ── Bootstrap carousel on DOMContentLoaded ──────────────── */
+(function initCarousel() {
+  const wrapper = document.getElementById('sry-carousel');
+  if (!wrapper) return;
+
+  /* Wait for fonts / layout so card heights are stable */
+  if (document.readyState === 'complete') {
+    new SentryCarousel(wrapper);
+  } else {
+    window.addEventListener('load', () => new SentryCarousel(wrapper), { once: true });
+  }
+}());

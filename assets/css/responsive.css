@@ -1,0 +1,284 @@
+/* ============================================================
+   SENTRY — Responsive System  (Mobile-First)
+   Load LAST — after styles.css and animations.css
+   ============================================================ */
+
+/* ─── 1. Fluid Design Tokens ──────────────────────────────── */
+:root {
+  /* Fluid type scale  (min  | fluid | max) */
+  --fs-2xs:  clamp(.65rem,  .63rem + .10vw, .72rem);
+  --fs-xs:   clamp(.72rem,  .70rem + .12vw, .80rem);
+  --fs-sm:   clamp(.80rem,  .77rem + .16vw, .90rem);
+  --fs-base: clamp(.90rem,  .86rem + .22vw, 1.02rem);
+  --fs-md:   clamp(1.00rem, .94rem + .32vw, 1.20rem);
+  --fs-lg:   clamp(1.10rem, .98rem + .62vw, 1.60rem);
+  --fs-xl:   clamp(1.30rem, 1.05rem + 1.32vw, 2.10rem);
+  --fs-2xl:  clamp(1.70rem, 1.20rem + 2.50vw, 3.00rem);
+  --fs-3xl:  clamp(2.10rem, 1.35rem + 3.80vw, 4.00rem);
+  --fs-hero: clamp(2.20rem, 1.30rem + 5.50vw, 4.80rem);
+
+  /* Fluid spacing scale */
+  --sp-3xs: clamp(.25rem, .22rem + .16vw, .40rem);
+  --sp-2xs: clamp(.40rem, .36rem + .22vw, .60rem);
+  --sp-xs:  clamp(.60rem, .54rem + .30vw, .90rem);
+  --sp-sm:  clamp(.80rem, .70rem + .52vw, 1.30rem);
+  --sp-md:  clamp(1.20rem, .95rem + 1.30vw, 2.40rem);
+  --sp-lg:  clamp(2.00rem, 1.30rem + 3.60vw, 5.00rem);
+  --sp-xl:  clamp(3.50rem, 2.00rem + 7.80vw, 10.0rem);
+  --sp-2xl: clamp(5.00rem, 2.80rem + 11.0vw, 14.0rem);
+
+  /* Fluid container padding */
+  --pad: clamp(1.25rem, 4vw, 3rem);
+
+  /* Touch target minimum */
+  --touch-target: 44px;
+}
+
+/* ─── 2. Global Base Overrides ────────────────────────────── */
+
+/* Use fluid base font */
+body { font-size: var(--fs-base); }
+
+/* Fluid container */
+.container {
+  padding-left:  var(--pad);
+  padding-right: var(--pad);
+}
+
+/* Fluid section vertical padding */
+.section       { padding-top: var(--sp-xl); padding-bottom: var(--sp-xl); }
+.cta-section   { padding-top: var(--sp-xl); padding-bottom: var(--sp-xl); }
+.page-hero     { padding-top: clamp(7rem, 6rem + 5vw, 12rem); padding-bottom: var(--sp-lg); }
+
+/* Section header spacing */
+.section-header { margin-bottom: var(--sp-lg); }
+
+/* ─── 3. Fluid Typography ─────────────────────────────────── */
+
+.hero-headline   { font-size: var(--fs-hero); }
+.hero-statement  { font-size: var(--fs-lg); }
+.hero-sub        { font-size: var(--fs-base); }
+
+.section-title   { font-size: var(--fs-2xl); }
+.page-title      { font-size: var(--fs-3xl); }
+.cta-headline    { font-size: var(--fs-2xl); }
+
+.sc-title        { font-size: var(--fs-md); }
+.why-title       { font-size: var(--fs-md); }
+.intro-highlight { font-size: var(--fs-md); }
+
+/* Footer */
+.footer-logo     { font-size: var(--fs-md); }
+.footer-desc     { font-size: var(--fs-sm); }
+.footer-links a  { font-size: var(--fs-sm); }
+
+/* ─── 4. Fluid Images ─────────────────────────────────────── */
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+.nav-logo img    { height: clamp(28px, 3.5vw, 38px); width: auto; }
+.footer-logo img { height: clamp(24px, 3vw, 34px);   width: auto; }
+
+/* ─── 5. Navigation — Fluid ───────────────────────────────── */
+
+.nav-inner {
+  padding-left:  var(--pad);
+  padding-right: var(--pad);
+}
+
+.nav-links a {
+  min-height: var(--touch-target);
+  display: inline-flex;
+  align-items: center;
+}
+
+/* ─── 6. Smooth All-Platform Scrolling ───────────────────── */
+
+html { scroll-behavior: smooth; -webkit-overflow-scrolling: touch; }
+
+/* ─── 7. Fluid Service Cards ─────────────────────────────── */
+
+.service-card { padding: clamp(28px, 4vw, 56px); }
+
+.service-card-inner {
+  gap: clamp(24px, 4vw, 64px);
+}
+
+/* ─── 8. Carousel card min-height ───────────────────────── */
+
+.testi-card-inner { min-height: 260px; }
+
+/* ─── 9. BREAKPOINT: 320px – 480px (mobile small) ──────── */
+
+@media (max-width: 480px) {
+
+  /* Nav */
+  nav           { padding: 16px 0; }
+  nav.scrolled  { padding: 12px 0; }
+
+  /* Hero */
+  .hero         { padding-top: 100px; padding-bottom: 80px; }
+  .hero-cta     {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+    width: 100%;
+  }
+  .hero-cta .btn {
+    width: 100%;
+    justify-content: center;
+    min-height: 52px;
+  }
+
+  /* Intro */
+  .intro-grid          { grid-template-columns: 1fr; gap: var(--sp-md); }
+  .intro-heading-sticky{ position: static; }
+
+  /* Services */
+  .services-list       { gap: 20px; }
+  .service-card-inner  { grid-template-columns: 1fr; gap: var(--sp-md); }
+
+  /* Support */
+  .support-grid        { grid-template-columns: 1fr; border-left: none; }
+  .support-item        { border-right: none; padding: 22px 0; }
+
+  /* Why */
+  .why-item            { grid-template-columns: 1fr; gap: 6px; padding: 26px 0; }
+
+  /* CTA */
+  .cta-pillars         { gap: 8px 8px; }
+  .cta-pillars span    { font-size: .7rem; padding: 7px 12px; }
+  .cta-content         { padding: 0 4px; }
+
+  /* Footer */
+  .footer-grid         { grid-template-columns: 1fr; gap: var(--sp-md); }
+  .footer-bottom       { flex-direction: column; text-align: center; gap: 10px; }
+  .footer-legal        { flex-wrap: wrap; justify-content: center; gap: 14px; }
+
+  /* About */
+  .about-body          { grid-template-columns: 1fr; gap: var(--sp-md); }
+  .contact-body        { grid-template-columns: 1fr; gap: var(--sp-md); }
+}
+
+/* ─── 10. BREAKPOINT: 481px – 768px (mobile / tablet-portrait) ── */
+
+@media (max-width: 768px) {
+
+  /* Nav converts to hamburger */
+  .nav-links, .nav-cta { display: none; }
+  .hamburger            { display: flex; }
+
+  /* Hero */
+  .hero      { padding-top: 110px; padding-bottom: 90px; }
+  .hero-cta  { flex-direction: column; align-items: center; gap: 12px; }
+
+  /* Layouts */
+  .intro-grid          { grid-template-columns: 1fr; gap: var(--sp-md); }
+  .intro-heading-sticky{ position: static; }
+  .service-card-inner  { grid-template-columns: 1fr; gap: var(--sp-md); }
+  .about-body          { grid-template-columns: 1fr; gap: var(--sp-md); }
+  .contact-body        { grid-template-columns: 1fr; gap: var(--sp-md); }
+
+  /* Support */
+  .support-grid        { grid-template-columns: 1fr; border-left: none; }
+  .support-item        { border-right: none; padding: 28px 0; }
+
+  /* Why */
+  .why-item            { grid-template-columns: 1fr; gap: 8px; padding: 32px 0; }
+
+  /* Footer */
+  .footer-grid         { grid-template-columns: 1fr 1fr; }
+  .footer-bottom       { flex-direction: column; text-align: center; }
+}
+
+/* ─── 11. BREAKPOINT: 769px – 1024px (tablet landscape) ───── */
+
+@media (max-width: 1024px) {
+
+  /* Service cards collapse to single column internally */
+  .service-card-inner  { grid-template-columns: 1fr; gap: var(--sp-md); }
+
+  /* 2-col layouts collapse */
+  .intro-grid          { grid-template-columns: 1fr; gap: var(--sp-md); }
+  .intro-heading-sticky{ position: static; }
+  .about-body          { grid-template-columns: 1fr; gap: var(--sp-md); }
+  .contact-body        { grid-template-columns: 1fr; gap: var(--sp-md); }
+
+  /* Footer 2-col */
+  .footer-grid         { grid-template-columns: 1fr 1fr; gap: var(--sp-md); }
+
+  /* Support 2-col */
+  .support-grid        { grid-template-columns: repeat(2, 1fr); }
+}
+
+/* ─── 12. BREAKPOINT: 1025px – 1440px (desktop) ────────────── */
+
+@media (min-width: 1025px) and (max-width: 1440px) {
+  /* Standard desktop — base styles apply, no overrides needed */
+}
+
+/* ─── 13. BREAKPOINT: 1441px+ (large / 4K) ─────────────────── */
+
+@media (min-width: 1441px) {
+  .container    { max-width: 1340px; }
+
+  .section      { padding-top: clamp(10rem, 12vw, 16rem); padding-bottom: clamp(10rem, 12vw, 16rem); }
+  .cta-section  { padding-top: clamp(12rem, 14vw, 18rem); padding-bottom: clamp(12rem, 14vw, 18rem); }
+
+  .service-card { padding: 72px 80px; }
+  .service-card-inner { gap: 80px; }
+
+  .why-item     { padding: 60px 0; }
+}
+
+/* ─── 14. Orientation: landscape mobile ─────────────────────── */
+
+@media (max-height: 520px) and (orientation: landscape) {
+  .hero     { padding-top: 80px; padding-bottom: 60px; }
+  nav       { padding: 10px 0; }
+  nav.scrolled { padding: 8px 0; }
+}
+
+/* ─── 15. Touch — Pointer-Coarse Devices ─────────────────── */
+
+@media (hover: none) and (pointer: coarse) {
+
+  /* Minimum tap-target sizes */
+  .btn           { min-height: 50px; }
+  .carousel-btn  { min-width: 50px; min-height: 50px; }
+  .carousel-dot  { min-width: 22px; min-height: 22px; }
+  .nav-links a   { min-height: var(--touch-target); }
+  .footer-links a{ min-height: var(--touch-target); display: flex; align-items: center; }
+
+  /* Remove hover-dependent layout shifts */
+  .why-item:hover       { padding-left: 0 !important; }
+  .philosophy-item:hover{ padding-left: 0 !important; }
+  .footer-links a:hover { transform: none; }
+}
+
+/* ─── 16. Fluid contact form ──────────────────────────────── */
+
+.form-input,
+.form-textarea {
+  font-size: var(--fs-base);
+  padding: clamp(12px, 1.5vw, 16px) clamp(14px, 2vw, 20px);
+}
+
+/* ─── 17. Print ───────────────────────────────────────────── */
+
+@media print {
+  nav,
+  .mobile-nav,
+  .hero-scroll-hint,
+  .carousel-controls,
+  .cta-section,
+  footer { display: none !important; }
+
+  .reveal { opacity: 1 !important; transform: none !important; }
+  body    { background: #fff !important; color: #111 !important; }
+  a       { color: inherit; text-decoration: none; }
+}
