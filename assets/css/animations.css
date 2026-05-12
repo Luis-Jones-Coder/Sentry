@@ -1,0 +1,537 @@
+/* ============================================================
+   SENTRY — Motion & Animation System
+   Load AFTER styles.css
+   ============================================================ */
+
+/* ─── 1. Easing & Timing Variables ──────────────────────── */
+:root {
+  --ease-smooth:     cubic-bezier(0.25, 0.10, 0.25, 1.00);
+  --ease-out-expo:   cubic-bezier(0.16, 1.00, 0.30, 1.00);
+  --ease-out-quart:  cubic-bezier(0.25, 1.00, 0.50, 1.00);
+  --ease-out-back:   cubic-bezier(0.34, 1.56, 0.64, 1.00);
+  --ease-in-out:     cubic-bezier(0.45, 0.00, 0.55, 1.00);
+
+  --dur-xs:   180ms;
+  --dur-sm:   280ms;
+  --dur-md:   480ms;
+  --dur-lg:   720ms;
+  --dur-xl:   1000ms;
+}
+
+/* ─── 2. Keyframes ───────────────────────────────────────── */
+
+/* Hero entrance */
+@keyframes sry-fade-up {
+  from { opacity: 0; transform: translateY(36px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes sry-scale-in {
+  from { opacity: 0; transform: scale(0.94) translateY(20px); }
+  to   { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+/* Scroll-down indicator bounce */
+@keyframes sry-bounce {
+  0%, 100% { transform: rotate(45deg) translate(0, 0);   opacity: .35; }
+  50%       { transform: rotate(45deg) translate(5px, 5px); opacity: .85; }
+}
+
+/* Subtle ambient float */
+@keyframes sry-float {
+  0%, 100% { transform: translateY(0px); }
+  50%       { transform: translateY(-10px); }
+}
+
+/* Gentle glow pulse on primary button */
+@keyframes sry-glow {
+  0%, 100% { box-shadow: 0 4px 24px rgba(255,255,255,.08), 0 0 0 0 rgba(184,202,216,.0); }
+  50%       { box-shadow: 0 8px 36px rgba(255,255,255,.14), 0 0 20px 4px rgba(184,202,216,.10); }
+}
+
+/* Ripple expand */
+@keyframes sry-ripple {
+  from { transform: scale(0);   opacity: .55; }
+  to   { transform: scale(4.5); opacity: 0; }
+}
+
+/* Shimmer for progress bar */
+@keyframes sry-shimmer {
+  from { background-position: -200% center; }
+  to   { background-position:  200% center; }
+}
+
+/* Page fade-out overlay */
+@keyframes sry-cover {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+/* Line draw (intro highlight underline) */
+@keyframes sry-line-draw {
+  from { transform: scaleX(0); }
+  to   { transform: scaleX(1); }
+}
+
+/* ─── 3. Scroll-Reveal Base ──────────────────────────────── */
+
+/* Override existing .reveal with enhanced version */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px) scale(0.985);
+  transition:
+    opacity  var(--dur-lg) var(--ease-out-expo),
+    transform var(--dur-lg) var(--ease-out-expo);
+  will-change: opacity, transform;
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+/* Stagger delay utilities (used inline via JS data-stagger) */
+.reveal[data-stagger="1"]  { transition-delay: .08s; }
+.reveal[data-stagger="2"]  { transition-delay: .16s; }
+.reveal[data-stagger="3"]  { transition-delay: .24s; }
+.reveal[data-stagger="4"]  { transition-delay: .32s; }
+.reveal[data-stagger="5"]  { transition-delay: .40s; }
+.reveal[data-stagger="6"]  { transition-delay: .48s; }
+
+/* Variant: slide from left */
+.reveal-left {
+  opacity: 0;
+  transform: translateX(-30px);
+  transition: opacity var(--dur-lg) var(--ease-out-expo),
+              transform var(--dur-lg) var(--ease-out-expo);
+}
+.reveal-left.visible { opacity: 1; transform: translateX(0); }
+
+/* ─── 4. Navigation ──────────────────────────────────────── */
+
+nav {
+  transition:
+    background-color .45s var(--ease-smooth),
+    border-color      .45s var(--ease-smooth),
+    padding           .40s var(--ease-out-quart),
+    backdrop-filter   .45s var(--ease-smooth);
+}
+
+/* Logo shrinks subtly when nav is sticky */
+.nav-logo {
+  transition: transform .40s var(--ease-out-quart);
+}
+nav.scrolled .nav-logo {
+  transform: scale(0.90);
+}
+
+/* Sliding metallic underline on nav links */
+.nav-links a {
+  position: relative;
+}
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  bottom: -3px;
+  left: 0;
+  width: 100%;
+  height: 1.5px;
+  background: linear-gradient(90deg, var(--accent-mid), var(--silver-light), var(--accent-mid));
+  background-size: 200% auto;
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform .32s var(--ease-out-quart);
+  border-radius: 1px;
+}
+.nav-links a:hover::after,
+.nav-links a.active::after {
+  transform: scaleX(1);
+  animation: sry-shimmer 2.5s linear infinite;
+}
+
+/* Scroll-progress line inside nav */
+.nav-progress {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 1.5px;
+  width: 0%;
+  background: linear-gradient(90deg, var(--accent), var(--silver-light));
+  border-radius: 0 2px 2px 0;
+  pointer-events: none;
+  transition: width .12s linear;
+  z-index: 10;
+}
+
+/* ─── 5. Hero Section ────────────────────────────────────── */
+
+/* Reset existing inline animation on hero elements and replace */
+.hero-headline {
+  animation: sry-fade-up var(--dur-xl) var(--ease-out-expo) .10s both;
+}
+
+.hero-statement {
+  animation: sry-fade-up var(--dur-xl) var(--ease-out-expo) .28s both;
+}
+
+/* Target both sub paragraphs via sibling combinator */
+.hero-sub {
+  animation: sry-fade-up var(--dur-xl) var(--ease-out-expo) .46s both;
+}
+.hero-sub + .hero-sub {
+  animation-delay: .58s;
+}
+
+.hero-cta {
+  animation: sry-scale-in var(--dur-lg) var(--ease-out-expo) .72s both;
+}
+
+/* Parallax-able layers — JS will write transforms */
+.hero-bg,
+.hero-grid {
+  will-change: transform;
+}
+
+/* Scroll indicator */
+.hero-scroll-hint {
+  position: absolute;
+  bottom: 44px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  animation: sry-fade-up var(--dur-lg) var(--ease-out-expo) 1.2s both;
+  pointer-events: none;
+}
+
+.hero-scroll-hint__label {
+  font-size: .62rem;
+  font-weight: 600;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+}
+
+.hero-scroll-hint__arrow {
+  width: 14px;
+  height: 14px;
+  border-right: 1px solid rgba(255,255,255,.22);
+  border-bottom: 1px solid rgba(255,255,255,.22);
+  animation: sry-bounce 2.2s var(--ease-in-out) infinite;
+}
+
+/* ─── 6. Service Cards ───────────────────────────────────── */
+
+.service-card {
+  transition:
+    transform      .38s var(--ease-out-quart),
+    border-color   .30s var(--ease-smooth),
+    box-shadow     .38s var(--ease-smooth);
+  will-change: transform;
+}
+
+.service-card:hover {
+  transform: translateY(-10px);
+  border-color: rgba(61, 111, 159, .55) !important;
+  box-shadow:
+    0  0  0  1px rgba(61, 111, 159, .25),
+    0 24px 60px rgba(0, 0, 0, .55),
+    0  0  50px rgba(61, 111, 159, .10);
+}
+
+/* Hover: left accent bar appears */
+.service-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 2px;
+  height: 0%;
+  background: linear-gradient(180deg, var(--accent-mid), var(--silver-light), transparent);
+  border-radius: 2px 0 0 2px;
+  transition: height .45s var(--ease-out-expo);
+  pointer-events: none;
+}
+.service-card:hover::before { height: 100%; }
+
+/* Include-list items reveal on hover */
+.sc-list li {
+  transition: color .2s var(--ease-smooth), transform .2s var(--ease-smooth);
+}
+.service-card:hover .sc-list li {
+  color: var(--text-primary);
+}
+
+/* Staggered sc-list items when card enters viewport */
+.service-card.visible .sc-list li:nth-child(1)  { transition-delay: .05s; }
+.service-card.visible .sc-list li:nth-child(2)  { transition-delay: .10s; }
+.service-card.visible .sc-list li:nth-child(3)  { transition-delay: .15s; }
+.service-card.visible .sc-list li:nth-child(4)  { transition-delay: .20s; }
+.service-card.visible .sc-list li:nth-child(5)  { transition-delay: .25s; }
+.service-card.visible .sc-list li:nth-child(6)  { transition-delay: .30s; }
+.service-card.visible .sc-list li:nth-child(7)  { transition-delay: .35s; }
+.service-card.visible .sc-list li:nth-child(8)  { transition-delay: .40s; }
+
+/* Outcome block accent on hover */
+.sc-outcome-block {
+  transition: border-color .30s var(--ease-smooth),
+              background   .30s var(--ease-smooth);
+}
+.service-card:hover .sc-outcome-block {
+  border-color: rgba(61, 111, 159, .30);
+  background: rgba(61, 111, 159, .06);
+}
+
+/* ─── 7. Support Grid Items ──────────────────────────────── */
+
+.support-item {
+  transition:
+    background-color .25s var(--ease-smooth),
+    padding          .30s var(--ease-out-quart);
+}
+.support-item:hover { background-color: rgba(255,255,255,.03); }
+
+.support-dash {
+  transition: width .40s var(--ease-out-expo),
+              background-color .25s var(--ease-smooth);
+}
+.support-item:hover .support-dash {
+  width: 52px;
+  background-color: var(--silver-light);
+}
+
+.support-item span {
+  transition: color .25s var(--ease-smooth);
+}
+.support-item:hover span { color: var(--white); }
+
+/* ─── 8. Why-Sentry Rows ─────────────────────────────────── */
+
+.why-item {
+  transition: background-color .25s var(--ease-smooth),
+              padding-left      .35s var(--ease-out-quart);
+}
+.why-item:hover {
+  background-color: rgba(255,255,255,.025);
+  padding-left: 20px;
+}
+
+.why-number {
+  transition: color .25s var(--ease-smooth);
+}
+.why-item:hover .why-number { color: var(--silver); }
+
+.why-title {
+  transition: color .25s var(--ease-smooth);
+}
+.why-item:hover .why-title { color: var(--silver-light); }
+
+/* ─── 9. Buttons ─────────────────────────────────────────── */
+
+.btn {
+  position: relative;
+  overflow: hidden;
+  transition:
+    transform        .22s var(--ease-out-quart),
+    box-shadow       .22s var(--ease-smooth),
+    background-color .22s var(--ease-smooth),
+    border-color     .22s var(--ease-smooth),
+    color            .22s var(--ease-smooth);
+}
+
+.btn:hover  { transform: translateY(-2px) scale(1.015); }
+.btn:active { transform: translateY(0)    scale(0.978); transition-duration: .1s; }
+
+/* Ripple span (injected by JS) */
+.btn-ripple {
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(255,255,255,.28);
+  pointer-events: none;
+  transform: scale(0);
+  animation: sry-ripple .65s var(--ease-out-expo) forwards;
+}
+
+/* Ambient glow on primary button */
+.btn-primary {
+  animation: sry-glow 3.5s ease-in-out infinite;
+}
+.btn-primary:hover {
+  animation: none;
+  box-shadow: 0 8px 32px rgba(255,255,255,.18), 0 0 24px rgba(184,202,216,.12);
+}
+
+/* Outline button: border slides to full opacity */
+.btn-outline::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: rgba(255,255,255,.04);
+  opacity: 0;
+  transition: opacity .22s var(--ease-smooth);
+}
+.btn-outline:hover::before { opacity: 1; }
+
+/* ─── 10. CTA Section ────────────────────────────────────── */
+
+/* Pillar pill hover */
+.cta-pillars span {
+  transition:
+    border-color     .25s var(--ease-smooth),
+    color            .25s var(--ease-smooth),
+    background-color .25s var(--ease-smooth),
+    transform        .28s var(--ease-out-quart);
+  cursor: default;
+}
+.cta-pillars span:hover {
+  border-color: var(--silver);
+  color: var(--white);
+  background: rgba(255,255,255,.04);
+  transform: translateY(-3px);
+}
+
+/* ─── 11. Intro Highlight Line ───────────────────────────── */
+
+.intro-highlight {
+  position: relative;
+}
+.intro-highlight::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -1px;
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(90deg, var(--accent-mid), var(--silver-light), transparent);
+  transform-origin: left center;
+  transform: scaleX(0);
+  transition: transform 1.1s var(--ease-out-expo) .2s;
+}
+.intro-highlight.visible::after { transform: scaleX(1); }
+
+/* ─── 12. Footer ─────────────────────────────────────────── */
+
+/* Footer links hover */
+.footer-links a {
+  transition: color .2s var(--ease-smooth),
+              transform .2s var(--ease-smooth);
+  display: inline-block;
+}
+.footer-links a:hover {
+  color: var(--white);
+  transform: translateX(4px);
+}
+
+/* Footer columns stagger in */
+.footer-grid > div {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity .6s var(--ease-out-expo),
+              transform .6s var(--ease-out-expo);
+}
+.footer-grid.footer-visible > div:nth-child(1) { opacity:1; transform:none; transition-delay: .00s; }
+.footer-grid.footer-visible > div:nth-child(2) { opacity:1; transform:none; transition-delay: .10s; }
+.footer-grid.footer-visible > div:nth-child(3) { opacity:1; transform:none; transition-delay: .20s; }
+.footer-grid.footer-visible > div:nth-child(4) { opacity:1; transform:none; transition-delay: .30s; }
+
+/* ─── 13. Page Transition Overlay ───────────────────────── */
+
+.sry-overlay {
+  position: fixed;
+  inset: 0;
+  background: var(--bg-deep);
+  z-index: 9999;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity .42s var(--ease-smooth);
+}
+.sry-overlay.sry-covering { opacity: 1; pointer-events: all; }
+
+/* ─── 14. Scroll Hint in Hero ────────────────────────────── */
+
+/* Hide when user starts scrolling (added via JS class) */
+.hero-scroll-hint.sry-hidden {
+  opacity: 0;
+  transform: translateX(-50%) translateY(8px);
+  transition: opacity .4s var(--ease-smooth), transform .4s var(--ease-smooth);
+}
+
+/* ─── 15. Tag Badge hover ────────────────────────────────── */
+
+.tag {
+  transition: border-color .25s var(--ease-smooth),
+              color         .25s var(--ease-smooth);
+  cursor: default;
+}
+.tag:hover {
+  border-color: var(--border-light);
+  color: var(--silver-light);
+}
+
+/* ─── 16. Philosophy & Contact Items ────────────────────── */
+
+.philosophy-item {
+  transition: padding-left .32s var(--ease-out-quart),
+              background   .25s var(--ease-smooth);
+}
+.philosophy-item:hover {
+  background: rgba(255,255,255,.02);
+  padding-left: 16px;
+}
+
+.philosophy-title {
+  transition: color .22s var(--ease-smooth);
+}
+.philosophy-item:hover .philosophy-title { color: var(--silver-light); }
+
+/* ─── 17. Form Inputs ────────────────────────────────────── */
+
+.form-input,
+.form-textarea {
+  transition: border-color .25s var(--ease-smooth),
+              box-shadow   .25s var(--ease-smooth),
+              background   .25s var(--ease-smooth);
+}
+.form-input:focus,
+.form-textarea:focus {
+  box-shadow: 0 0 0 3px rgba(61,111,159,.18);
+}
+
+/* ─── 18. Responsive: Reduce Motion ──────────────────────── */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .01ms !important;
+  }
+}
+
+/* ─── 19. Responsive: Mobile Overrides ───────────────────── */
+
+@media (max-width: 768px) {
+  .hero-headline { animation-delay: .05s; }
+  .hero-statement { animation-delay: .15s; }
+  .hero-sub { animation-delay: .25s; }
+  .hero-cta { animation-delay: .35s; }
+
+  .service-card:hover { transform: translateY(-5px); }
+  .why-item:hover     { padding-left: 0; }
+
+  /* No glow pulse on mobile to save battery */
+  .btn-primary { animation: none; }
+
+  .hero-scroll-hint { display: none; }
+}
+
+/* ─── 20. Responsive: Tablet ─────────────────────────────── */
+
+@media (max-width: 1024px) {
+  .service-card:hover { transform: translateY(-7px); }
+}

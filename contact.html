@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact — Sentry Business Consultancy</title>
+  <meta name="description" content="Get in touch with Sentry to discuss your business challenges, goals, and how we can support your growth." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="assets/css/styles.css" />
+  <link rel="stylesheet" href="assets/css/animations.css" />
+</head>
+<body>
+
+  <!-- ─── NAVIGATION ──────────────────────────────────────── -->
+  <nav id="navbar">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">
+        <img src="imagen/logo.png" alt="Sentry" />
+        <span class="nav-logo-text">SENTRY<span>.</span></span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="index.html#services">Services</a></li>
+        <li><a href="contact.html" class="active">Contact</a></li>
+      </ul>
+      <div class="nav-cta">
+        <a href="contact.html" class="btn btn-primary btn-sm">Book a Consultation</a>
+      </div>
+      <button type="button" class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Mobile Nav -->
+  <div class="mobile-nav" id="mobile-nav" role="dialog" aria-label="Navigation">
+    <button type="button" class="mobile-nav-close" id="mobile-nav-close" aria-label="Close menu">✕</button>
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="index.html#services">Services</a>
+    <a href="contact.html">Contact</a>
+    <a href="contact.html" class="btn btn-primary">Book a Consultation</a>
+  </div>
+
+  <!-- ─── PAGE HERO ───────────────────────────────────────── -->
+  <section class="page-hero">
+    <div class="container">
+      <div class="page-hero-content">
+        <div class="tag">Contact</div>
+        <h1 class="page-title">Get In Touch</h1>
+        <p class="page-sub">
+          Take the first step toward building a more structured, efficient, and scalable business.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── CONTACT BODY ────────────────────────────────────── -->
+  <section class="section">
+    <div class="container">
+      <div class="contact-body">
+
+        <!-- Left: info -->
+        <div class="contact-info reveal">
+          <h2 class="contact-info-heading">Let's Talk About Your Business</h2>
+          <p>
+            We'd love to learn more about your business, operational challenges, and growth goals. We begin by understanding how your business currently operates, identifying areas for improvement, and outlining the clearest next steps toward stronger structure and performance.
+          </p>
+
+          <ul class="contact-details">
+            <li>📧 &nbsp;<a href="mailto:hello@sentry.com">hello@sentry.com</a></li>
+            <li>📞 &nbsp;<a href="tel:+441234567890">+44 (0) 123 456 7890</a></li>
+            <li>🌐 &nbsp;<a href="#">www.sentry.com</a></li>
+          </ul>
+
+        </div>
+
+        <!-- Right: form -->
+        <div class="reveal reveal-delay-1">
+          <form class="contact-form" action="#" method="post" novalidate>
+            <div class="form-group">
+              <label class="form-label" for="full-name">Full Name</label>
+              <input
+                class="form-input"
+                type="text"
+                id="full-name"
+                name="full_name"
+                placeholder="Your full name"
+                required
+                autocomplete="name"
+              />
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="email">Email Address</label>
+              <input
+                class="form-input"
+                type="email"
+                id="email"
+                name="email"
+                placeholder="your@email.com"
+                required
+                autocomplete="email"
+              />
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="business-name">Business Name</label>
+              <input
+                class="form-input"
+                type="text"
+                id="business-name"
+                name="business_name"
+                placeholder="Your business or company name"
+                autocomplete="organization"
+              />
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="business-desc">Brief Business Description</label>
+              <input
+                class="form-input"
+                type="text"
+                id="business-desc"
+                name="business_description"
+                placeholder="What does your business do?"
+              />
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="message">Message</label>
+              <textarea
+                class="form-textarea"
+                id="message"
+                name="message"
+                placeholder="Tell us about your business challenges, goals, or what you'd like support with…"
+                required
+              ></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-lg">
+              Book Your Consultation Today
+            </button>
+
+            <p class="form-note">
+              We typically respond within one business day. All enquiries are treated with complete confidentiality.
+            </p>
+          </form>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── FOOTER ───────────────────────────────────────────── -->
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <div class="footer-logo">
+            <img src="imagen/logo.png" alt="Sentry" />
+            SENTRY.
+          </div>
+          <p class="footer-desc">Business Strategy &amp; Operations Consultancy. Helping founders and business owners build structured, scalable, and operationally strong businesses.</p>
+        </div>
+        <div>
+          <div class="footer-col-title">Services</div>
+          <ul class="footer-links">
+            <li><a href="index.html#services">Startup Accelerator</a></li>
+            <li><a href="index.html#services">Growth &amp; Operations</a></li>
+            <li><a href="index.html#services">Strategic Advisory</a></li>
+            <li><a href="index.html#support">Additional Support</a></li>
+          </ul>
+        </div>
+        <div>
+          <div class="footer-col-title">Company</div>
+          <ul class="footer-links">
+            <li><a href="about.html">About Sentry</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+        <div>
+          <div class="footer-col-title">Get In Touch</div>
+          <ul class="footer-links">
+            <li><a href="contact.html">Book a Consultation</a></li>
+            <li><a href="contact.html">Enquire About Services</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div>© 2025 Sentry. All rights reserved.</div>
+        <div class="footer-legal">
+          <a href="#">Privacy Policy</a>
+          <a href="#">Terms of Service</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/js/main.js"></script>
+  <script src="assets/js/animations.js"></script>
+</body>
+</html>

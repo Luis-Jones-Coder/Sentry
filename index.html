@@ -3,525 +3,369 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Sentry — Business Consultancy & Startup Acceleration | London, UK</title>
-  <meta name="description" content="Sentry is the UK's premier business consultancy and startup acceleration firm. We help British founders and companies create, structure, and scale — with clarity, precision, and measurable results." />
+  <title>Sentry — Business Strategy & Operations Consultancy</title>
+  <meta name="description" content="Sentry is a business strategy and operations consultancy helping founders and business owners build structured, scalable, and operationally strong businesses." />
 
-  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
 
-  <!-- Styles -->
   <link rel="stylesheet" href="assets/css/styles.css" />
+  <link rel="stylesheet" href="assets/css/animations.css" />
 </head>
 <body>
 
-  <!-- Particle Canvas -->
-  <canvas id="particle-canvas"></canvas>
-
-  <!-- ─── NAV ─────────────────────────────────────────────── -->
+  <!-- ─── NAVIGATION ──────────────────────────────────────── -->
   <nav id="navbar">
     <div class="nav-inner">
-      <a href="#" class="nav-logo">
-        <img src="imagen/logo.png" alt="Sentry Logo" />
+      <a href="index.html" class="nav-logo">
+        <img src="imagen/logo.png" alt="Sentry" />
         <span class="nav-logo-text">SENTRY<span>.</span></span>
       </a>
       <ul class="nav-links">
-        <li><a href="#about">About</a></li>
+        <li><a href="index.html" class="active">Home</a></li>
+        <li><a href="about.html">About</a></li>
         <li><a href="#services">Services</a></li>
-        <li><a href="#cases">Results</a></li>
-        <li><a href="#testimonials">Clients</a></li>
-        <li><a href="#contact">Contact</a></li>
+        <li><a href="contact.html">Contact</a></li>
       </ul>
       <div class="nav-cta">
-        <a href="#contact" class="btn btn-sm btn-outline">Log In</a>
-        <a href="#contact" class="btn btn-sm btn-primary">Book a Call</a>
+        <a href="contact.html" class="btn btn-primary btn-sm">Book a Consultation</a>
       </div>
-      <button class="hamburger" id="hamburger" aria-label="Menu" aria-expanded="false">
+      <button type="button" class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false">
         <span></span><span></span><span></span>
       </button>
     </div>
   </nav>
 
-  <!-- ─── HERO ─────────────────────────────────────────────── -->
+  <!-- Mobile Nav -->
+  <div class="mobile-nav" id="mobile-nav" role="dialog" aria-label="Navigation">
+    <button class="mobile-nav-close" id="mobile-nav-close" aria-label="Close menu">✕</button>
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="#services">Services</a>
+    <a href="contact.html">Contact</a>
+    <a href="contact.html" class="btn btn-primary">Book a Consultation</a>
+  </div>
+
+  <!-- ─── HERO ────────────────────────────────────────────── -->
   <section class="hero" id="home">
     <div class="hero-bg"></div>
     <div class="hero-grid"></div>
     <div class="container">
       <div class="hero-content">
-        <div class="tag">UK's Premier Business Consultancy & Startup Accelerator</div>
         <h1 class="hero-headline">
-          Build. Structure.<br />
-          <span class="gradient-text">Accelerate.</span>
+          Business Strategy &amp;<br />Operations Consultancy
         </h1>
+        <p class="hero-statement">
+          Turning business ideas into structured, scalable operations.
+        </p>
         <p class="hero-sub">
-          Sentry partners with British founders and companies to create, structure, and scale their businesses — delivering clarity, strategic precision, and measurable results across the UK.
+          At Sentry, we provide high-level business support designed to help founders and business owners strengthen operations, improve structure, overcome challenges, and build businesses positioned for sustainable growth.
+        </p>
+        <p class="hero-sub">
+          We combine strategy, operational clarity, and execution-focused support to help businesses operate more efficiently and scale with confidence.
         </p>
         <div class="hero-cta">
-          <a href="#contact" class="btn btn-primary btn-lg">
-            <span>Book a Strategy Call</span>
-            <span>→</span>
-          </a>
-          <a href="#services" class="btn btn-outline btn-lg">Explore Our Services</a>
-        </div>
-        <div class="hero-metrics">
-          <div class="metric-item">
-            <div class="metric-value" data-target="150">0</div>
-            <div class="metric-label">UK Companies Accelerated</div>
-          </div>
-          <div class="metric-item">
-            <div class="metric-value" data-target="94" data-suffix="%">0%</div>
-            <div class="metric-label">Client Growth Rate</div>
-          </div>
-          <div class="metric-item">
-            <div class="metric-value" data-prefix="£" data-target="280" data-suffix="M+">£0M+</div>
-            <div class="metric-label">Revenue Generated</div>
-          </div>
-          <div class="metric-item">
-            <div class="metric-value" data-target="12">0</div>
-            <div class="metric-label">Years of UK Expertise</div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Floating Dashboard Card -->
-      <div class="hero-visual">
-        <div class="hero-card">
-          <div class="hc-header">
-            <div class="hc-dot red"></div>
-            <div class="hc-dot yellow"></div>
-            <div class="hc-dot green"></div>
-            <span class="hc-title">Sentry Analytics Dashboard</span>
-          </div>
-          <div class="hc-kpis">
-            <div class="kpi-box">
-              <div class="kpi-label">Revenue Growth</div>
-              <div class="kpi-val">+187%</div>
-              <div class="kpi-change">↑ vs last quarter</div>
-            </div>
-            <div class="kpi-box">
-              <div class="kpi-label">Active Clients</div>
-              <div class="kpi-val">48</div>
-              <div class="kpi-change kpi-change--blue">↑ 12 new</div>
-            </div>
-            <div class="kpi-box">
-              <div class="kpi-label">Efficiency</div>
-              <div class="kpi-val">96%</div>
-              <div class="kpi-change">↑ Operational</div>
-            </div>
-            <div class="kpi-box">
-              <div class="kpi-label">NPS Score</div>
-              <div class="kpi-val">9.4</div>
-              <div class="kpi-change">↑ Exceptional</div>
-            </div>
-          </div>
-          <div class="hc-bar-label">Quarterly Growth Rate</div>
-          <div class="bar-track"><div class="bar-fill" style="--bar-w:87%"></div></div>
-          <div class="bar-track"><div class="bar-fill" style="--bar-w:72%;--bar-delay:.3s"></div></div>
-          <div class="bar-track"><div class="bar-fill" style="--bar-w:94%;--bar-delay:.6s"></div></div>
-          <div class="hc-small-cards">
-            <div class="hc-small-card">
-              <div class="hsc-icon">🚀</div>
-              <div class="hsc-label">Launches</div>
-            </div>
-            <div class="hc-small-card">
-              <div class="hsc-icon">📊</div>
-              <div class="hsc-label">KPIs</div>
-            </div>
-            <div class="hc-small-card">
-              <div class="hsc-icon">🎯</div>
-              <div class="hsc-label">Strategy</div>
-            </div>
-          </div>
+          <a href="contact.html" class="btn btn-primary btn-lg">Book a Strategy Consultation</a>
+          <a href="#services" class="btn btn-outline btn-lg">Explore Services</a>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ─── ABOUT ─────────────────────────────────────────────── -->
-  <section class="section" id="about">
+  <!-- ─── INTRO ───────────────────────────────────────────── -->
+  <section class="section intro-section" id="intro">
     <div class="container">
-      <div class="about-grid">
-        <div>
-          <div class="tag reveal">Our Mission</div>
-          <h2 class="section-title reveal">Turning <span class="gradient-text">Ambition</span><br />into Measurable Growth</h2>
-          <p class="section-sub reveal">
-            At Sentry, we don't just advise — we partner. From zero to scale, we provide the strategic frameworks, operational clarity, and data-driven roadmaps that transform British early-stage ideas into UK and global market leaders.
+      <div class="intro-grid">
+        <div class="intro-heading-sticky">
+          <h2 class="section-title reveal">
+            Structured Businesses<br /><span class="accent-text">Perform Better</span>
+          </h2>
+        </div>
+        <div class="intro-copy">
+          <p class="intro-text reveal">
+            At Sentry, we set high standards — and deliver structured, actionable results.
           </p>
-          <div class="about-features reveal">
-            <div class="feat-card">
-              <div class="feat-icon">🎯</div>
-              <div class="feat-title">Clear Objectives</div>
-              <div class="feat-desc">Every engagement starts with precise, measurable goals — no ambiguity.</div>
-            </div>
-            <div class="feat-card">
-              <div class="feat-icon">📐</div>
-              <div class="feat-title">Structured Approach</div>
-              <div class="feat-desc">Proprietary frameworks built for scalable, repeatable business growth.</div>
-            </div>
-            <div class="feat-card">
-              <div class="feat-icon">📊</div>
-              <div class="feat-title">Data-Driven</div>
-              <div class="feat-desc">Decisions backed by real market intelligence and financial modelling.</div>
-            </div>
-            <div class="feat-card">
-              <div class="feat-icon">⚡</div>
-              <div class="feat-title">Rapid Execution</div>
-              <div class="feat-desc">Strategy without speed is irrelevant. We move with urgency and precision.</div>
-            </div>
-          </div>
-        </div>
-        <div class="about-visual reveal">
-          <div class="about-big-card">
-            <div class="orbit-wrapper">
-              <div class="orbit-center">🏢</div>
-              <div class="orbit-ring"><div class="orbit-dot"></div></div>
-              <div class="orbit-ring"><div class="orbit-dot orbit-dot--accent"></div></div>
-              <div class="orbit-ring"><div class="orbit-dot orbit-dot--dark"></div></div>
-            </div>
-            <div class="orbit-stat">
-              <div class="os-item"><div class="os-val">150+</div><div class="os-label">Clients</div></div>
-              <div class="os-item"><div class="os-val">18</div><div class="os-label">Industries</div></div>
-              <div class="os-item"><div class="os-val">4.9★</div><div class="os-label">Rating</div></div>
-            </div>
-          </div>
+          <p class="intro-text reveal reveal-delay-1">
+            We help founders and business owners transform ideas and existing businesses into organised, operationally strong companies built for long-term growth.
+          </p>
+          <p class="intro-text reveal reveal-delay-2">
+            With experience across multiple industries and fast-moving business environments, we focus on improving systems, strengthening operations, refining decision-making, and creating scalable foundations that support performance.
+          </p>
+          <p class="intro-highlight reveal reveal-delay-3">
+            We do not provide generic advice.
+          </p>
+          <p class="intro-text reveal reveal-delay-4">
+            We provide structured direction, operational clarity, and practical implementation support designed to move businesses forward.
+          </p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ─── SERVICES ──────────────────────────────────────────── -->
-  <section class="section section--gradient" id="services">
+  <!-- ─── SERVICES ────────────────────────────────────────── -->
+  <section class="section section--dark" id="services">
     <div class="container">
       <div class="section-header">
-        <div class="tag reveal">Core Services</div>
-        <h2 class="section-title reveal">Everything You Need to <span class="gradient-text">Scale</span></h2>
-        <p class="section-sub section-sub--center reveal">Six specialised disciplines, one unified approach — built to take your business from concept to category leader.</p>
+        <div class="tag reveal">Our Services</div>
+        <h2 class="section-title reveal">Built Around What<br /><span class="accent-text">Your Business Needs</span></h2>
       </div>
-      <div class="services-grid">
+
+      <div class="services-list">
+
+        <!-- Service 1 -->
         <div class="service-card reveal">
-          <div class="sc-number">01</div>
-          <div class="sc-icon">🚀</div>
-          <div class="sc-title">Startup Creation & Launch Strategy</div>
-          <div class="sc-desc">From business model validation to go-to-market execution, we architect your launch for maximum traction and minimum wasted capital.</div>
-          <div class="sc-value">Validate, launch, grow</div>
+          <div class="service-card-inner">
+            <div class="sc-left">
+              <span class="sc-num">01</span>
+              <h3 class="sc-title">Startup Accelerator – 90 Days</h3>
+              <p class="sc-subtitle">Structured Business Launch Programme</p>
+              <p class="sc-desc">Designed for founders building a business that requires clear structure, direction, and operational foundations from day one.</p>
+            </div>
+            <div class="sc-mid">
+              <p class="sc-includes-label">Includes</p>
+              <ul class="sc-list">
+                <li>Full business planning &amp; strategic development</li>
+                <li>Financial planning &amp; forecasting</li>
+                <li>90-day execution roadmap</li>
+                <li>Product/service positioning support</li>
+                <li>Operational workflow planning</li>
+                <li>Business structure development</li>
+                <li>Weekly strategic guidance sessions</li>
+                <li>Accountability and implementation support</li>
+              </ul>
+            </div>
+            <div class="sc-right">
+              <div class="sc-outcome-block">
+                <span class="sc-outcome-label">Outcome</span>
+                <p class="sc-outcome-text">A structured, launch-ready business with operational clarity, systems, and a strong foundation for growth.</p>
+              </div>
+              <a href="contact.html" class="btn btn-outline btn-sm">Book a Strategy Consultation</a>
+            </div>
+          </div>
         </div>
+
+        <!-- Service 2 -->
         <div class="service-card reveal">
-          <div class="sc-number">02</div>
-          <div class="sc-icon">⚙️</div>
-          <div class="sc-title">Business Structuring & Process Optimisation</div>
-          <div class="sc-desc">We map, redesign, and implement lean operational structures that eliminate bottlenecks and create scalable, repeatable systems.</div>
-          <div class="sc-value">Efficiency by design</div>
+          <div class="service-card-inner">
+            <div class="sc-left">
+              <span class="sc-num">02</span>
+              <h3 class="sc-title">Growth &amp; Operations Optimisation</h3>
+              <p class="sc-subtitle">Improve Efficiency. Strengthen Operations. Scale Sustainably.</p>
+              <p class="sc-desc">Designed for businesses experiencing inefficiencies, inconsistent growth, or operational bottlenecks.</p>
+            </div>
+            <div class="sc-mid">
+              <p class="sc-includes-label">Includes</p>
+              <ul class="sc-list">
+                <li>Full operational business audit</li>
+                <li>Performance and efficiency analysis</li>
+                <li>Operational improvement strategies</li>
+                <li>System and workflow optimisation</li>
+                <li>Profitability and growth planning</li>
+                <li>KPI tracking frameworks</li>
+                <li>Strategic planning sessions</li>
+                <li>Ongoing implementation support</li>
+              </ul>
+            </div>
+            <div class="sc-right">
+              <div class="sc-outcome-block">
+                <span class="sc-outcome-label">Outcome</span>
+                <p class="sc-outcome-text">A more efficient, organised, and scalable business built for long-term performance.</p>
+              </div>
+              <a href="contact.html" class="btn btn-outline btn-sm">Discuss Your Business</a>
+            </div>
+          </div>
         </div>
+
+        <!-- Service 3 -->
         <div class="service-card reveal">
-          <div class="sc-number">03</div>
-          <div class="sc-icon">📈</div>
-          <div class="sc-title">Growth Acceleration Programmes</div>
-          <div class="sc-desc">Custom 90-day acceleration sprints combining UK sales strategy, digital channels, investor readiness, and operational excellence.</div>
-          <div class="sc-value">90-day transformation</div>
+          <div class="service-card-inner">
+            <div class="sc-left">
+              <span class="sc-num">03</span>
+              <h3 class="sc-title">Strategic Advisory Support</h3>
+              <p class="sc-subtitle">Ongoing Strategic &amp; Operational Guidance</p>
+              <p class="sc-desc">For business owners requiring consistent strategic input, operational direction, and business support.</p>
+            </div>
+            <div class="sc-mid">
+              <p class="sc-includes-label">Includes</p>
+              <ul class="sc-list">
+                <li>Ongoing strategic advisory access</li>
+                <li>Monthly business performance reviews</li>
+                <li>Decision-making support</li>
+                <li>Operational problem-solving</li>
+                <li>Growth prioritisation guidance</li>
+                <li>Accountability and execution support</li>
+                <li>Performance monitoring and optimisation</li>
+              </ul>
+            </div>
+            <div class="sc-right">
+              <div class="sc-outcome-block">
+                <span class="sc-outcome-label">Outcome</span>
+                <p class="sc-outcome-text">Stronger business structure, clearer decision-making, and improved operational control.</p>
+              </div>
+              <a href="contact.html" class="btn btn-outline btn-sm">Request Strategic Support</a>
+            </div>
+          </div>
         </div>
-        <div class="service-card reveal">
-          <div class="sc-number">04</div>
-          <div class="sc-icon">🔍</div>
-          <div class="sc-title">Market & Competitor Analysis</div>
-          <div class="sc-desc">Deep-dive intelligence on market sizing, competitive positioning, white spaces, and customer segmentation to sharpen your strategy.</div>
-          <div class="sc-value">Intelligence-led decisions</div>
-        </div>
-        <div class="service-card reveal">
-          <div class="sc-number">05</div>
-          <div class="sc-icon">💰</div>
-          <div class="sc-title">Financial Modelling & KPI Frameworks</div>
-          <div class="sc-desc">Rigorous financial projections, unit economics analysis, and custom KPI dashboards that keep leadership aligned and investors confident.</div>
-          <div class="sc-value">Numbers that tell the truth</div>
-        </div>
-        <div class="service-card reveal">
-          <div class="sc-number">06</div>
-          <div class="sc-icon">🎨</div>
-          <div class="sc-title">Brand & Product Positioning</div>
-          <div class="sc-desc">Strategic brand architecture and product messaging that cuts through noise — differentiating you clearly in a crowded marketplace.</div>
-          <div class="sc-value">Stand out, stand for something</div>
-        </div>
+
       </div>
     </div>
   </section>
 
-  <!-- ─── WHY SENTRY ────────────────────────────────────────── -->
-  <section class="section why" id="why">
-    <div class="container">
-      <div class="why-grid">
-        <div>
-          <div class="tag reveal">Why Sentry</div>
-          <h2 class="section-title reveal">The <span class="gradient-text">Sentry Edge</span><br />in Every Engagement</h2>
-          <div class="why-points">
-            <div class="why-point reveal">
-              <div class="wp-icon">📊</div>
-              <div>
-                <div class="wp-title">Data-Driven Decision Making</div>
-                <div class="wp-desc">Every recommendation is rooted in market data, financial analysis, and validated assumptions — not guesswork or gut feelings.</div>
-              </div>
-            </div>
-            <div class="why-point reveal">
-              <div class="wp-icon">🎯</div>
-              <div>
-                <div class="wp-title">Clear & Measurable Objectives</div>
-                <div class="wp-desc">We define success before we start. Every engagement has quantifiable milestones so you always know exactly where you stand.</div>
-              </div>
-            </div>
-            <div class="why-point reveal">
-              <div class="wp-icon">🧩</div>
-              <div>
-                <div class="wp-title">Tailored Strategies for Each Business</div>
-                <div class="wp-desc">No templates. No cookie-cutter approaches. Every strategy is custom-built for your industry, stage, and competitive context.</div>
-              </div>
-            </div>
-            <div class="why-point reveal">
-              <div class="wp-icon">🏆</div>
-              <div>
-                <div class="wp-title">Proven Frameworks for Growth</div>
-                <div class="wp-desc">Methodologies refined across 150+ engagements in 18 industries — we know what works and why.</div>
-              </div>
-            </div>
-            <div class="why-point reveal">
-              <div class="wp-icon">👥</div>
-              <div>
-                <div class="wp-title">Senior Consultants Across Industries</div>
-                <div class="wp-desc">Our team brings C-suite experience from tech, finance, retail, and beyond — diversity of expertise that broadens your strategic lens.</div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="reveal">
-          <div class="why-chart">
-            <div class="chart-title">Client Business Growth — Before vs. After Sentry</div>
-            <div class="chart-bars">
-              <div class="c-bar-wrap">
-                <div class="c-bar c-bar--pre" style="--bar-h:30%"></div>
-                <div class="c-bar-label">Pre</div>
-              </div>
-              <div class="c-bar-wrap">
-                <div class="c-bar" style="--bar-h:82%;--bar-delay:.1s"></div>
-                <div class="c-bar-label">Q1</div>
-              </div>
-              <div class="c-bar-wrap">
-                <div class="c-bar c-bar--pre" style="--bar-h:65%"></div>
-                <div class="c-bar-label">Pre</div>
-              </div>
-              <div class="c-bar-wrap">
-                <div class="c-bar" style="--bar-h:95%;--bar-delay:.2s"></div>
-                <div class="c-bar-label">Q1</div>
-              </div>
-              <div class="c-bar-wrap">
-                <div class="c-bar c-bar--pre" style="--bar-h:45%"></div>
-                <div class="c-bar-label">Pre</div>
-              </div>
-              <div class="c-bar-wrap">
-                <div class="c-bar" style="--bar-h:88%;--bar-delay:.3s"></div>
-                <div class="c-bar-label">Q1</div>
-              </div>
-            </div>
-            <div class="chart-legend">
-              <div class="chart-legend-item">
-                <div class="legend-dot legend-dot--muted"></div>
-                <div class="legend-text">Before Sentry engagement</div>
-              </div>
-              <div class="chart-legend-item">
-                <div class="legend-dot"></div>
-                <div class="legend-text">After first 90 days with Sentry</div>
-              </div>
-            </div>
-            <div class="why-multiplier">
-              <div class="why-multiplier__value">2.4×</div>
-              <div class="why-multiplier__label">Average revenue multiplier across UK clients in 90 days</div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ─── CASE STUDIES ──────────────────────────────────────── -->
-  <section class="section" id="cases">
+  <!-- ─── ADDITIONAL SUPPORT ───────────────────────────────── -->
+  <section class="section support-section" id="support">
     <div class="container">
       <div class="section-header">
-        <div class="tag reveal">Case Studies</div>
-        <h2 class="section-title reveal">Results That <span class="gradient-text">Speak</span> for Themselves</h2>
-        <p class="section-sub section-sub--center reveal">Real companies, real metrics, real transformations — delivered by Sentry's strategic frameworks.</p>
+        <h2 class="section-title reveal">Additional Operational<br />&amp; Growth Support</h2>
       </div>
-      <div class="cases-grid">
-        <div class="case-card reveal">
-          <div class="case-tag">London FinTech</div>
-          <div class="case-title">From Idea to £2.4M Seed Round in 7 Months</div>
-          <div class="case-desc">Sentry architected the business model, defined the MVP scope, and built the investor narrative that secured funding from three London-based institutional VCs.</div>
-          <div class="case-divider"></div>
-          <div class="case-metrics">
-            <div class="cm-item"><div class="cm-val">£2.4M</div><div class="cm-label">Seed raised</div></div>
-            <div class="cm-item"><div class="cm-val">7mo</div><div class="cm-label">Time to close</div></div>
-            <div class="cm-item"><div class="cm-val">3</div><div class="cm-label">UK lead investors</div></div>
-          </div>
+      <div class="support-grid">
+        <div class="support-item reveal">
+          <div class="support-dash"></div>
+          <span>Operational systems &amp; process development</span>
         </div>
-        <div class="case-card reveal">
-          <div class="case-tag">UK Retail & E-Commerce</div>
-          <div class="case-title">Operational Overhaul: 60% Cost Reduction</div>
-          <div class="case-desc">A mid-sized UK retailer with fragmented operations engaged Sentry for a full process audit and restructuring. Result: leaner teams, faster fulfilment, higher margins.</div>
-          <div class="case-divider"></div>
-          <div class="case-metrics">
-            <div class="cm-item"><div class="cm-val">60%</div><div class="cm-label">Cost reduction</div></div>
-            <div class="cm-item"><div class="cm-val">3×</div><div class="cm-label">Fulfilment speed</div></div>
-            <div class="cm-item"><div class="cm-val">+28%</div><div class="cm-label">Net margin</div></div>
-          </div>
+        <div class="support-item reveal reveal-delay-1">
+          <div class="support-dash"></div>
+          <span>Leadership &amp; performance development</span>
         </div>
-        <div class="case-card reveal">
-          <div class="case-tag">UK SaaS / Tech</div>
-          <div class="case-title">Growth Sprint: 0 to 10K Users in 90 Days</div>
-          <div class="case-desc">A UK-based B2B SaaS company needed user acquisition strategy. Sentry designed the funnel, optimised pricing, and launched a partner channel programme.</div>
-          <div class="case-divider"></div>
-          <div class="case-metrics">
-            <div class="cm-item"><div class="cm-val">10K</div><div class="cm-label">Users acquired</div></div>
-            <div class="cm-item"><div class="cm-val">90d</div><div class="cm-label">Sprint duration</div></div>
-            <div class="cm-item"><div class="cm-val">£145K</div><div class="cm-label">MRR achieved</div></div>
-          </div>
+        <div class="support-item reveal reveal-delay-2">
+          <div class="support-dash"></div>
+          <span>Marketing &amp; business growth strategy</span>
+        </div>
+        <div class="support-item reveal reveal-delay-3">
+          <div class="support-dash"></div>
+          <span>Business restructuring &amp; optimisation projects</span>
+        </div>
+        <div class="support-item reveal reveal-delay-4">
+          <div class="support-dash"></div>
+          <span>Product/service launch support</span>
+        </div>
+        <div class="support-item reveal reveal-delay-5">
+          <div class="support-dash"></div>
+          <span>Workflow and efficiency improvement</span>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ─── TESTIMONIALS ──────────────────────────────────────── -->
-  <section class="section testi" id="testimonials">
+  <!-- ─── WHY SENTRY ───────────────────────────────────────── -->
+  <section class="section section--dark" id="why">
     <div class="container">
       <div class="section-header">
-        <div class="tag reveal">Testimonials</div>
-        <h2 class="section-title reveal">Trusted by <span class="gradient-text">UK Founders</span> & Leaders</h2>
-        <p class="section-sub section-sub--center reveal">The people behind the numbers — British founders and executives who built their future with Sentry.</p>
+        <div class="tag reveal">Why Sentry</div>
+        <h2 class="section-title reveal">Why Businesses<br /><span class="accent-text">Choose Sentry</span></h2>
       </div>
-      <div class="testi-grid">
-        <div class="testi-card reveal">
-          <div class="testi-stars">★★★★★</div>
-          <div class="testi-quote">"</div>
-          <div class="testi-text">Sentry didn't just give us a strategy — they gave us clarity. For the first time, our entire leadership team was aligned on exactly what we were building and why. For any UK founder serious about scaling, this is the team.</div>
-          <div class="testi-author">
-            <div class="ta-avatar">JH</div>
-            <div>
-              <div class="ta-name">James Hartley</div>
-              <div class="ta-role">CEO, NovaCore Technologies — London</div>
-            </div>
+      <div class="why-list">
+        <div class="why-item reveal">
+          <div class="why-number">01</div>
+          <div class="why-content">
+            <h3 class="why-title">Structured Expertise</h3>
+            <p class="why-desc">We focus on strengthening the internal structure and operational performance of businesses.</p>
           </div>
         </div>
-        <div class="testi-card reveal">
-          <div class="testi-stars">★★★★★</div>
-          <div class="testi-quote">"</div>
-          <div class="testi-text">We came to Sentry with an idea and left with a fundable business. Their frameworks for market analysis and financial modelling were unlike anything we'd seen from a UK consultancy before. Exceptional.</div>
-          <div class="testi-author">
-            <div class="ta-avatar">OW</div>
-            <div>
-              <div class="ta-name">Olivia Walsh</div>
-              <div class="ta-role">Founder, Meridian Capital — Manchester</div>
-            </div>
+        <div class="why-item reveal">
+          <div class="why-number">02</div>
+          <div class="why-content">
+            <h3 class="why-title">Actionable Support</h3>
+            <p class="why-desc">Clear strategies, practical systems, and implementation-focused guidance.</p>
           </div>
         </div>
-        <div class="testi-card reveal">
-          <div class="testi-stars">★★★★★</div>
-          <div class="testi-quote">"</div>
-          <div class="testi-text">The 90-day growth programme was transformational. Sentry identified our biggest revenue leak in week one and fixed it by week three. Results were measurable, fast, and genuinely lasting.</div>
-          <div class="testi-author">
-            <div class="ta-avatar">ET</div>
-            <div>
-              <div class="ta-name">Edward Thompson</div>
-              <div class="ta-role">COO, Elevate Commerce — Edinburgh</div>
-            </div>
+        <div class="why-item reveal">
+          <div class="why-number">03</div>
+          <div class="why-content">
+            <h3 class="why-title">Growth-Focused Approach</h3>
+            <p class="why-desc">Designed to improve efficiency, performance, organisation, and long-term scalability.</p>
+          </div>
+        </div>
+        <div class="why-item reveal">
+          <div class="why-number">04</div>
+          <div class="why-content">
+            <h3 class="why-title">Operational Clarity</h3>
+            <p class="why-desc">We help businesses simplify operations, improve accountability, and operate with greater control.</p>
+          </div>
+        </div>
+        <div class="why-item reveal">
+          <div class="why-number">05</div>
+          <div class="why-content">
+            <h3 class="why-title">Long-Term Thinking</h3>
+            <p class="why-desc">Our focus is not short-term fixes — it is building sustainable operational foundations for growth.</p>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ─── CTA ───────────────────────────────────────────────── -->
-  <section class="cta-section" id="contact">
-    <div class="cta-bg"></div>
-    <div class="cta-glow"></div>
+  <!-- ─── FINAL CTA ────────────────────────────────────────── -->
+  <section class="cta-section" id="cta">
     <div class="container">
       <div class="cta-content reveal">
-        <div class="tag cta-tag">Ready to Begin?</div>
         <h2 class="cta-headline">
-          Let's Build the Future<br />
-          <span class="gradient-text">of Your Business</span>
+          Structure Creates<br /><span class="accent-text">Scalable Growth</span>
         </h2>
-        <p class="cta-sub">One conversation. No fluff. Just a clear picture of how Sentry can accelerate your growth across the UK market — and exactly what that looks like in practice.</p>
-        <a href="mailto:hello@sentry-consulting.co.uk" class="btn btn-primary btn-lg">
-          Schedule Your Free Consultation &nbsp;→
-        </a>
-        <div class="cta-trust">
-          <div class="trust-item"><span>✓</span><span>No commitment required</span></div>
-          <div class="trust-item"><span>✓</span><span>Senior consultant on first call</span></div>
-          <div class="trust-item"><span>✓</span><span>Results or we reassess</span></div>
-          <div class="trust-item"><span>✓</span><span>UK-based & NDA-ready</span></div>
+        <p class="cta-lead">
+          If your business feels difficult to manage, operationally unclear, or inconsistent in performance — the issue is often structure, not potential.
+        </p>
+        <p class="cta-bold">That can be fixed.</p>
+        <p class="cta-intro">Sentry helps businesses build:</p>
+        <div class="cta-pillars">
+          <span>Clarity</span>
+          <span>Systems</span>
+          <span>Operational Efficiency</span>
+          <span>Scalable Foundations</span>
         </div>
+        <p class="cta-body">
+          Book a consultation and discover how Sentry can help strengthen your business operations and support long-term growth.
+        </p>
+        <a href="contact.html" class="btn btn-primary btn-lg">Book Your Consultation</a>
       </div>
     </div>
   </section>
 
-  <!-- ─── FOOTER ────────────────────────────────────────────── -->
+  <!-- ─── FOOTER ───────────────────────────────────────────── -->
   <footer>
     <div class="container">
       <div class="footer-grid">
-        <div class="footer-brand">
+        <div>
           <div class="footer-logo">
             <img src="imagen/logo.png" alt="Sentry" />
             SENTRY.
           </div>
-          <p class="footer-desc">UK's premier Business Consultancy & Startup Accelerator. Helping British founders and companies create, structure, and scale — with clarity, precision, and measurable results.</p>
-          <div class="footer-socials">
-            <a class="social-btn" title="LinkedIn">in</a>
-            <a class="social-btn" title="Twitter">𝕏</a>
-            <a class="social-btn" title="Instagram">ig</a>
-            <a class="social-btn" title="YouTube">▶</a>
-          </div>
+          <p class="footer-desc">Business Strategy &amp; Operations Consultancy. Helping founders and business owners build structured, scalable, and operationally strong businesses.</p>
         </div>
         <div>
           <div class="footer-col-title">Services</div>
           <ul class="footer-links">
-            <li><a href="#services">Startup Strategy</a></li>
-            <li><a href="#services">Business Structuring</a></li>
-            <li><a href="#services">Growth Programmes</a></li>
-            <li><a href="#services">Market Analysis</a></li>
-            <li><a href="#services">Financial Modelling</a></li>
-            <li><a href="#services">Brand Positioning</a></li>
+            <li><a href="#services">Startup Accelerator</a></li>
+            <li><a href="#services">Growth &amp; Operations</a></li>
+            <li><a href="#services">Strategic Advisory</a></li>
+            <li><a href="#support">Additional Support</a></li>
           </ul>
         </div>
         <div>
           <div class="footer-col-title">Company</div>
           <ul class="footer-links">
-            <li><a href="#about">About Sentry</a></li>
-            <li><a href="#cases">Case Studies</a></li>
-            <li><a href="#testimonials">Testimonials</a></li>
-            <li><a href="#">Blog</a></li>
-            <li><a href="#">Careers</a></li>
-            <li><a href="#contact">Contact</a></li>
+            <li><a href="about.html">About Sentry</a></li>
+            <li><a href="contact.html">Contact</a></li>
           </ul>
         </div>
         <div>
-          <div class="footer-col-title">Contact</div>
+          <div class="footer-col-title">Get In Touch</div>
           <ul class="footer-links">
-            <li><a href="mailto:hello@sentry-consulting.co.uk">hello@sentry-consulting.co.uk</a></li>
-            <li><a href="tel:+442079460800">+44 (0) 20 7946 0800</a></li>
-            <li><a href="#">London · Manchester · Edinburgh</a></li>
-            <li class="footer-cta-item">
-              <a href="#contact" class="btn btn-sm btn-primary">Book a Call →</a>
-            </li>
+            <li><a href="contact.html">Book a Consultation</a></li>
+            <li><a href="contact.html">Enquire About Services</a></li>
           </ul>
         </div>
       </div>
       <div class="footer-bottom">
-        <div>© 2025 Sentry Consulting Group Ltd. Registered in England & Wales. All rights reserved.</div>
+        <div>© 2025 Sentry. All rights reserved.</div>
         <div class="footer-legal">
           <a href="#">Privacy Policy</a>
           <a href="#">Terms of Service</a>
-          <a href="#">Cookie Policy</a>
         </div>
       </div>
     </div>
   </footer>
 
-  <!-- Scripts -->
   <script src="assets/js/main.js"></script>
+  <script src="assets/js/animations.js"></script>
 </body>
 </html>
