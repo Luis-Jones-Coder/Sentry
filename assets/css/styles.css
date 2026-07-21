@@ -60,6 +60,15 @@ body {
 
 .section-header { margin-bottom: 80px; }
 
+.section-lead {
+  margin-top: 24px;
+  max-width: 720px;
+  font-size: 1.02rem;
+  color: var(--text-muted);
+  line-height: 1.85;
+}
+.section-lead--center { margin-left: auto; margin-right: auto; }
+
 /* ─── 5. Typography ──────────────────────────────────────── */
 h1, h2, h3 {
   font-family: 'Montserrat', sans-serif;
@@ -225,6 +234,8 @@ nav.scrolled {
   align-items: center;
   justify-content: center;
   gap: 36px;
+  overflow-y: auto;
+  padding: 90px 24px 40px;
 }
 .mobile-nav.open { display: flex; }
 .mobile-nav a {
@@ -904,6 +915,247 @@ footer {
 @keyframes fade-up {
   from { opacity: 0; transform: translateY(22px); }
   to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ─── 22b. Service Meta (Best For) ───────────────────────── */
+.sc-best {
+  font-size: .875rem;
+  color: var(--text-muted);
+  line-height: 1.7;
+  margin-top: 18px;
+}
+.sc-best-label {
+  font-size: .68rem;
+  font-weight: 700;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--silver);
+  margin-right: 8px;
+}
+
+/* ─── 22c. Statement / Promise Sections ──────────────────── */
+.statement-section { background: var(--bg-dark); }
+.statement-content {
+  max-width: 720px;
+  margin: 0 auto;
+  text-align: center;
+}
+.statement-lead {
+  font-size: 1.02rem;
+  color: var(--text-muted);
+  line-height: 1.85;
+  margin-bottom: 22px;
+}
+.statement-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  margin: 40px 0;
+  text-align: left;
+}
+.statement-list li {
+  font-size: .98rem;
+  color: var(--text-primary);
+  line-height: 1.7;
+  padding-left: 28px;
+  position: relative;
+}
+.statement-list li::before {
+  content: '—';
+  position: absolute;
+  left: 0;
+  color: var(--accent-mid);
+}
+.statement-closing {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--white);
+  margin-top: 32px;
+  padding-top: 28px;
+  border-top: 1px solid var(--border);
+  text-align: center;
+}
+
+/* ─── 22d. Process (How We Work) ─────────────────────────── */
+.process-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 40px;
+}
+.process-step { position: relative; padding-top: 8px; }
+.process-num {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 2.4rem;
+  font-weight: 800;
+  color: var(--text-dim);
+  margin-bottom: 18px;
+  line-height: 1;
+}
+.process-title {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--white);
+  margin-bottom: 10px;
+}
+.process-desc {
+  font-size: .88rem;
+  color: var(--text-muted);
+  line-height: 1.7;
+}
+
+/* ─── 22f. Mission / Vision ───────────────────────────────── */
+.mv-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 48px;
+}
+.mv-card {
+  padding: 44px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+}
+.mv-label {
+  font-size: .68rem;
+  font-weight: 700;
+  letter-spacing: .13em;
+  text-transform: uppercase;
+  color: var(--silver);
+  margin-bottom: 18px;
+}
+.mv-title { font-size: 1.25rem; margin-bottom: 16px; }
+.mv-text {
+  font-size: .92rem;
+  color: var(--text-muted);
+  line-height: 1.8;
+}
+
+/* ─── 22g. Founder Section ───────────────────────────────── */
+.founder-grid {
+  display: grid;
+  grid-template-columns: 320px 1fr;
+  gap: 64px;
+  align-items: start;
+}
+.founder-photo {
+  aspect-ratio: 4 / 5;
+  border-radius: 8px;
+  border: 1px solid var(--border-md);
+  background:
+    linear-gradient(155deg, rgba(255,255,255,.04), transparent 60%),
+    var(--bg-card);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: sticky;
+  top: 120px;
+  overflow: hidden;
+}
+.founder-photo img { width: 100%; height: 100%; object-fit: cover; }
+.founder-photo-placeholder { text-align: center; color: var(--text-dim); padding: 24px; }
+.founder-photo-placeholder svg { margin: 0 auto 14px; opacity: .5; }
+.founder-photo-placeholder span {
+  display: block;
+  font-size: .74rem;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+.founder-text p {
+  font-size: .98rem;
+  color: var(--text-muted);
+  line-height: 1.85;
+  margin-bottom: 20px;
+}
+.founder-text p.founder-lead {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--white);
+  line-height: 1.5;
+}
+.founder-signoff {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  color: var(--white);
+  margin-top: 28px;
+}
+
+/* ─── 22h. Client Success Placeholder ────────────────────── */
+.success-placeholder {
+  border: 1px dashed var(--border-light);
+  border-radius: 8px;
+  padding: 64px 48px;
+  text-align: center;
+  max-width: 760px;
+  margin: 0 auto;
+}
+.success-placeholder p {
+  font-size: .98rem;
+  color: var(--text-muted);
+  line-height: 1.8;
+  max-width: 560px;
+  margin: 0 auto 32px;
+}
+.success-tags {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+}
+.success-tags span {
+  font-size: .78rem;
+  color: var(--silver);
+  border: 1px solid var(--border-md);
+  border-radius: 3px;
+  padding: 8px 16px;
+  letter-spacing: .02em;
+}
+
+/* ─── 22i. Who We Help (centered statement) ──────────────── */
+.who-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin: 28px 0;
+}
+.who-list li {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--silver-light);
+}
+
+/* ─── 22j. Additional Support Note ───────────────────────── */
+.support-note {
+  max-width: 680px;
+  margin: 32px 0 0;
+  font-size: .92rem;
+  color: var(--text-muted);
+  line-height: 1.8;
+}
+
+/* ─── 22k. Founder Signature strip ───────────────────────── */
+.founder-strip {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-top: 40px;
+  padding-top: 32px;
+  border-top: 1px solid var(--border);
+}
+.founder-strip-name {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  color: var(--white);
+  font-size: .95rem;
+}
+.founder-strip-role {
+  font-size: .82rem;
+  color: var(--text-muted);
 }
 
 /* ─── 22. Responsive ─────────────────────────────────────── */

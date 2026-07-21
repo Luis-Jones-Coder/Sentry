@@ -112,6 +112,24 @@ html { scroll-behavior: smooth; -webkit-overflow-scrolling: touch; }
 
 .testi-card-inner { min-height: 260px; }
 
+/* ─── 8b. New Section Grids — fluid collapse ─────────────── */
+
+.process-grid  { gap: var(--sp-md); }
+.mv-grid       { gap: var(--sp-md); }
+.founder-grid  { gap: clamp(32px, 5vw, 64px); }
+
+@media (max-width: 1024px) {
+  .process-grid  { grid-template-columns: repeat(2, 1fr); }
+  .mv-grid       { grid-template-columns: 1fr; }
+  .founder-grid  { grid-template-columns: 1fr; }
+  .founder-photo { position: static; max-width: 320px; margin: 0 auto; }
+}
+
+@media (max-width: 768px) {
+  .process-grid  { grid-template-columns: 1fr; }
+  .success-placeholder { padding: var(--sp-md) var(--pad); }
+}
+
 /* ─── 9. BREAKPOINT: 320px – 480px (mobile small) ──────── */
 
 @media (max-width: 480px) {
