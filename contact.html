@@ -81,15 +81,34 @@
         </div>
 
         <!-- Right: form -->
-        <div class="reveal reveal-delay-1">
-          <form class="contact-form" action="#" method="post" novalidate>
+        <div class="reveal reveal-delay-1" id="contact-form-wrap">
+
+          <!-- Success state (shown after FormSubmit redirects back with ?sent=true) -->
+          <div class="form-success" id="form-success" hidden>
+            <div class="form-success-icon" aria-hidden="true">✓</div>
+            <h3>Message Sent</h3>
+            <p>Thank you for reaching out. We typically respond within one business day, and all enquiries are treated with complete confidentiality.</p>
+            <a href="contact.html" class="btn btn-outline btn-sm">Send Another Message</a>
+          </div>
+
+          <form class="contact-form" id="contact-form"
+                action="https://formsubmit.co/sentrybusinessconsultant@gmail.com"
+                method="POST">
+
+            <!-- FormSubmit configuration (hidden fields — not shown to the user) -->
+            <input type="hidden" name="_subject" value="New enquiry — Sentry website" />
+            <input type="hidden" name="_template" value="table" />
+            <input type="hidden" name="_next" value="https://luis-jones-coder.github.io/Sentry/contact.html?sent=true" />
+            <!-- Honeypot: bots tend to fill every field, real users never see this one -->
+            <input type="text" name="_honey" class="hp-field" tabindex="-1" autocomplete="off" aria-hidden="true" />
+
             <div class="form-group">
               <label class="form-label" for="full-name">Full Name</label>
               <input
                 class="form-input"
                 type="text"
                 id="full-name"
-                name="full_name"
+                name="Full Name"
                 placeholder="Your full name"
                 required
                 autocomplete="name"
@@ -102,7 +121,7 @@
                 class="form-input"
                 type="email"
                 id="email"
-                name="email"
+                name="Email Address"
                 placeholder="your@email.com"
                 required
                 autocomplete="email"
@@ -115,7 +134,7 @@
                 class="form-input"
                 type="text"
                 id="business-name"
-                name="business_name"
+                name="Business Name"
                 placeholder="Your business or company name"
                 autocomplete="organization"
               />
@@ -127,7 +146,7 @@
                 class="form-input"
                 type="text"
                 id="business-desc"
-                name="business_description"
+                name="Business Description"
                 placeholder="What does your business do?"
               />
             </div>
@@ -137,7 +156,7 @@
               <textarea
                 class="form-textarea"
                 id="message"
-                name="message"
+                name="Message"
                 placeholder="Tell us about your business challenges, goals, or what you'd like support with…"
                 required
               ></textarea>
@@ -204,5 +223,18 @@
 
   <script src="assets/js/main.js"></script>
   <script src="assets/js/animations.js"></script>
+  <script>
+    // FormSubmit redirects here with ?sent=true once an enquiry is delivered.
+    // Swap the form for a confirmation message instead of leaving the empty form visible.
+    (function () {
+      if (new URLSearchParams(window.location.search).get('sent') !== 'true') return;
+      var form = document.getElementById('contact-form');
+      var success = document.getElementById('form-success');
+      if (!form || !success) return;
+      form.hidden = true;
+      success.hidden = false;
+      success.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    })();
+  </script>
 </body>
 </html>

@@ -853,6 +853,8 @@ footer {
   flex-direction: column;
   gap: 22px;
 }
+.contact-form[hidden],
+.form-success[hidden] { display: none; }
 
 .form-group {
   display: flex;
@@ -894,6 +896,48 @@ footer {
   color: var(--text-dim);
   line-height: 1.65;
   margin-top: -8px;
+}
+
+/* Honeypot field — invisible to real visitors, catches bots */
+.hp-field {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* ─── 19b. Contact Form — Success State ──────────────────── */
+.form-success {
+  background: var(--bg-card);
+  border: 1px solid var(--border-md);
+  border-radius: 6px;
+  padding: 56px 44px;
+  text-align: center;
+}
+.form-success-icon {
+  width: 52px;
+  height: 52px;
+  margin: 0 auto 24px;
+  border-radius: 50%;
+  border: 1px solid var(--border-light);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.3rem;
+  color: var(--white);
+}
+.form-success h3 {
+  font-size: 1.2rem;
+  margin-bottom: 14px;
+}
+.form-success p {
+  font-size: .92rem;
+  color: var(--text-muted);
+  line-height: 1.8;
+  max-width: 380px;
+  margin: 0 auto 28px;
 }
 
 /* ─── 20. Scroll Reveal ──────────────────────────────────── */
