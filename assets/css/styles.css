@@ -188,6 +188,31 @@ nav.scrolled {
 }
 .nav-logo-text span { color: var(--silver); }
 
+/* Header: logo a la izquierda, título a la derecha */
+.navbar .logo {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.navbar .logo img {
+  height: 55px;
+  width: auto;
+  opacity: 1;
+}
+
+.navbar .title {
+  font-size: 1.05rem;
+  letter-spacing: 0;
+  white-space: nowrap;
+}
+
+@media (max-width: 600px) {
+  .navbar .logo { gap: 10px; }
+  .navbar .logo img { height: 44px; }
+  .navbar .title { font-size: .85rem; white-space: normal; line-height: 1.2; }
+}
+
 .nav-links {
   display: flex;
   gap: 40px;
